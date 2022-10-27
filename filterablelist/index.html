@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filterable List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+</head>
+<body>
+    <div class="container">
+        <h1 class="center-align">
+            Contacts
+        </h1>
+        <input type="text" id="filterInput" placeholder="Search names..">
+        <input type="text" placeholder="Add Contact..">
+        <button id="addContact">Add Contact</button>
+        <ul id="names" class="collection width-header">
+            <ul class="A">
+            <li class="collection-header">
+                <h5>A</h5>
+            </li>
+            <li class="collection-item">
+                <a href="#">Abel</a>
+            </li>
+            <li class="collection-item">
+                <a href="#">Adam</a>
+            </li>
+            <li class="collection-item">
+                <a href="#">Alex</a>
+            </li>
+            <li class="collection-item">
+                <a href="#">Ann</a>
+            </li>
+            </ul>
+            <ul id="B">
+            <li class="collection-header">
+                <h5>B</h5>
+            </li>
+            <li class="collection-item">
+                <a href="#">Balo</a>
+            </li>
+            <li class="collection-item">
+                <a href="#">Betty</a>
+            </li>
+            <li class="collection-item">
+                <a href="#">Bob</a>
+            </li>
+            <li class="collection-item">
+                <a href="#">Busha</a>
+            </li>
+            </ul>
+            <ul id="C">
+            <li class="collection-header">
+                <h5>C</h5>
+            </li>
+            <li class="collection-item">
+                <a href="#">Catty</a>
+            </li>
+            <li class="collection-item">
+                <a href="#">Caz</a>
+            </li>
+            <li class="collection-item">
+                <a href="#">Cowen</a>
+            </li>
+            <li class="collection-item">
+                <a href="#">Cupper</a>
+            </li>
+            </ul>
+            <ul id="D">
+            <li class="collection-header">
+                <h5>D</h5>
+            </li>
+            <li class="collection-item">
+                <a href="#">Dane</a>
+            </li>
+            <li class="collection-item">
+                <a href="#">Darly</a>
+            </li>
+            <li class="collection-item">
+                <a href="#">Dexter</a>
+            </li>
+            <li class="collection-item">
+                <a href="#">Dora</a>
+            </li>
+            </ul>
+            
+        </ul>
+    </div>
+    <script>
+        let filterInput = document.getElementById('filterInput');
+
+        filterInput.addEventListener('keyup',filterNames);
+
+        function filterNames(){
+            let filterValue = 
+            document.getElementById('filterInput').value.toUpperCase();
+            
+            let ul = document.getElementById('names');
+
+            let li = ul.querySelectorAll('li.collection-item');
+
+            for(let i=0;i<li.length;i++){
+                let a = li[i].getElementsByTagName('a')[0];
+                if(a.innerHTML.toUpperCase().indexOf(filterValue)>-1){
+                    li[i].style.display='';
+                }else{
+                    li[i].style.display= 'none';
+                }
+            }
+        }
+        let addContact = document.getElementById('addContact');
+        addContact.addEventListener('click',newContact);
+        function newContact(filterValue){
+            
+            
+            let ogul = document.createElement('li');
+            ogul.className = 'A';
+
+            let li2 = document.createElement('li');
+            li2.className = 'collection-header';
+            li2.textContent = filterValue.charAt(0);
+
+            let lili = document.createElement('li');
+            lili.className = 'collection-item';
+            lili.textContent = filterValue;
+
+            ogul.append(li2);
+            ogul.append(lili);
+            document.querySelector('collection').append(ogul);
+
+
+
+
+
+            
+        }
+    </script>
+</body>
+</html>
